@@ -1,0 +1,14 @@
+{
+  "name": "root",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Root project",
+  "scripts": {
+    "build": "turbo build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "turbo": "~2.0.4"
+  },
+  "packageManager": "pnpm@9.1.1"
+}
