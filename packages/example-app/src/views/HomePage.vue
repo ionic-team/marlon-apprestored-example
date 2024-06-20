@@ -14,8 +14,9 @@
       </ion-header>
 
       <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <div style="margin-top: 10px;">
+          Look in dev console logs for the app resume and pause events.
+        </div>
       </div>
     </ion-content>
   </ion-page>
@@ -23,6 +24,19 @@
 
 <script setup lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { MarlonAppRestore } from 'marlon-example-plugin';
+
+MarlonAppRestore.addListener('resume', (data: {[key: string]: boolean}) => {
+  console.log('-----App resumed-----');
+  console.log(data);
+  console.log('---------------------');
+});
+
+MarlonAppRestore.addListener('pause', (data: {[key: string]: boolean}) => {
+  console.log('------App paused------');
+  console.log(data);
+  console.log('----------------------');
+});
 </script>
 
 <style scoped>

@@ -1,3 +1,13 @@
+import type { PluginListenerHandle } from "@capacitor/core";
+
 export interface MarlonAppRestorePlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  addListener(
+    eventName: 'resume',
+    listenerFunc: (data: {[key: string]: boolean}) => void,
+  ): Promise<PluginListenerHandle>;
+
+  addListener(
+    eventName: 'pause',
+    listenerFunc: (data: {[key: string]: boolean}) => void,
+  ): Promise<PluginListenerHandle>;
 }

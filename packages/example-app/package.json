@@ -17,6 +17,8 @@
     "@capacitor/haptics": "6.0.0",
     "@capacitor/keyboard": "6.0.1",
     "@capacitor/status-bar": "6.0.0",
+    "@capacitor/ios": "6.1.0",
+    "@capacitor/android": "6.1.0",
     "@ionic/vue": "^8.0.0",
     "@ionic/vue-router": "^8.0.0",
     "marlon-example-plugin": "workspace:*",

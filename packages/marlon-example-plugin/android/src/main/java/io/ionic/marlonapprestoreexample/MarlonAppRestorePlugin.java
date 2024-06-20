@@ -9,14 +9,37 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 @CapacitorPlugin(name = "MarlonAppRestore")
 public class MarlonAppRestorePlugin extends Plugin {
 
-    private MarlonAppRestore implementation = new MarlonAppRestore();
+    private boolean hasPausedEver = false;
 
-    @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
+    // ----- Pause Event Listener -----
 
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
+    @Override
+    protected void handleOnPause() {
+        super.handleOnPause();
+        hasPausedEver = true;
+        sendPauseEventListenerData();
     }
+
+    private void sendPauseEventListenerData() {
+        JSObject data = new JSObject();
+        data.put("pause", true);
+        notifyListeners("pause", data);
+    }
+
+    // ----- Resume Event Listener -----
+
+    @Override
+    protected void handleOnResume() {
+        super.handleOnResume();
+        if (hasPausedEver) {
+            sendRestoreEventListenerData();
+        }
+    }
+
+    private void sendRestoreEventListenerData() {
+        JSObject data = new JSObject();
+        data.put("restored", true);
+        notifyListeners("resume", data);
+    }
+
 }
